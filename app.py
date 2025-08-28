@@ -108,29 +108,7 @@ def completed(task_id):
             "completed":new_status
         })
     return jsonify({"success":False}),403
-    
-# 🔴 NEW ROUTE - Delete User Account
-@app.route('/delete_account', methods=['POST'])
-def delete_account():
-    if 'user_id' not in session:
-        flash("You must be logged in to delete your account","error")
-        return redirect(url_for('login'))
 
-    user_id = session['user_id']
-    conn = db_connection()
-    cur = conn.cursor()
-
-    # delete tasks first (if foreign key constraints not set to cascade)
-    cur.execute("DELETE FROM tasks WHERE user_id=%s", (user_id,))
-    # delete user
-    cur.execute("DELETE FROM users WHERE id=%s", (user_id,))
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    session.clear()
-    flash("Your account and all tasks have been deleted successfully.","success")
-    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     app.run(debug=True)
