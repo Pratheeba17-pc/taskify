@@ -3,14 +3,14 @@ name: CI/CD to Docker Hub
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/Checkout@v3
+        uses: actions/checkout@v4
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -24,7 +24,7 @@ jobs:
           DOCKER_REPO: ${{ secrets.DOCKER_HUB_REPO }}
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker compose -f docker-compose.yml Build
+          docker compose -f docker-compose.yml build
           
           docker tag cicdtest:v1 $DOCKER_USER/$DOCKER_REPO:$IMAGE_TAG
 
