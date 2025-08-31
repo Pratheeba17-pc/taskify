@@ -32,10 +32,10 @@ COPY . .
 # Flask environment
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=5500
+ENV FLASK_RUN_PORT=5000
 ENV PORT=5000
 
-EXPOSE 5500
+EXPOSE 5000
 
 # Run Flask
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5500"]
+CMD ["flask", "run", "--host=0.0.0.0"]
