@@ -97,7 +97,7 @@ def completed(task_id):
     cur.execute("select completed from tasks where id=%s and user_id=%s",(task_id,session['user_id']))
     task=cur.fetchone()
     if task:
-        
+        #hncken
         new_status=not task['completed']
         cur.execute("update tasks set completed=%s where id=%s",(new_status,task_id))
         conn.commit()
