@@ -1,7 +1,7 @@
 from db import db_connection
 from flask import Flask, request, render_template, redirect, url_for, session, flash, jsonify
 from werkzeug.security import generate_password_hash,check_password_hash
-
+import os
 app= Flask(__name__)
 app.secret_key="12345678"
 
@@ -133,7 +133,7 @@ def delete_account():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=os.getenv("PORT",5000))
 
 
 

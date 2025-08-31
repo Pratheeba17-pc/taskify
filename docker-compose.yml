@@ -1,0 +1,6 @@
+services:
+  flaskapp:
+    image: cicdtest:v1
+    build: .
+    ports:
+      - "5500:5000"
